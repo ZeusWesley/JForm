@@ -1,0 +1,370 @@
+@extends('layout.layout')
+
+@section('content')
+<link rel="stylesheet" href="{{ url('assets/template/css/JForm.css') }}" />
+<link rel="stylesheet" href="{{ url('assets/template/css/dropzone.css') }}" />
+<link rel="stylesheet" href="{{ url('assets/template/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" />
+
+<div class="container text-center">
+    <div class="steps">
+        <a href="#" data-step="type" class="active">Transporte e Armazenagem</a>
+        <a href="#" data-step="file" class="disable-step">Arquivo Armazenagem</a>
+        <a href="#" data-step="questions" class="disable-step">Formulario Armazenagem</a>
+        <a href="#" data-step="file-charge" class="disable-step">Arquivo Transporte</a>
+        <a href="#" data-step="questions-charge" class="disable-step">Formulario Transporte</a>
+        <a href="#" data-step="end" class="disable-step">Pronto</a>
+    </div>
+</div>
+
+<div class="container choice">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="steps-body">
+                <!-- Transporte/Armazenagem -->
+                <div class="type text-center step-content">
+                    <!-- Header Transporte/Armazenagem -->
+                    <div class="step-header">
+                        <h3 class="text-center">Transporte e Armazenagem</h3>
+                        <p class="text-center text-muted">Deseja realizar somente um serviço neste pedido ou multiplos?</p>
+                    </div>
+
+                    <button type="button" data-step-enable="file-charge questions-charge" data-step-disable="file questions" class="type-request btn btn-default next-step">
+                        <img src="{{ url('img/icons/delivery-truck.png') }}" class="icons">
+                        <br>
+                        Transporte
+                    </button>
+
+                    <button type="button" data-step-disable="file-charge questions-charge" data-step-enable="file questions" class="type-request btn btn-default next-step">
+                        <img src="{{ url('img/icons/box.png') }}" class="box">
+                        <br>
+                        Armazenagem
+                    </button>
+
+                    <button type="button" data-step-enable="file questions file-charge questions-charge" class="type-request btn btn-default next-step">
+                        <img src="{{ url('img/icons/box.png') }}" class="box">
+                        <span class="plus-icon">+</span>
+                        <img src="{{ url('img/icons/delivery-truck.png') }}" class="icons">
+                        <br>
+                        Armazenagem e Transporte
+                    </button>
+                </div>
+
+                <!-- Arquivo de Armazenagem -->
+                <div class="step-content d-medium-v pd-large-h file hide">
+                    <!-- Header arquivo de Armazenagem -->
+                    <div class="step-header">
+                        <h3 class="text-center">Arquivo de Armazenagem</h3>
+                        <p class="text-center text-muted">Deseja anexar um arquivo para processamento de Informacoes?</p>
+                    </div>
+
+                    <div class="my-dropzone" name="mainFileUploader">
+                        <div class="fallback text-muted"></div>
+                    </div>
+
+                    <button type="button" data-step-show="type" class="btn btn-default pull-left prev-step">
+                        <i class="material-icons">arrow_back</i>
+                        Voltar
+                    </button>
+
+                    <button type="button" data-step-show="questions" class="btn btn-primary right next-step">
+                        Continuar
+                        <i class="material-icons">arrow_forwards</i>
+                    </button>
+                </div>
+
+                <!-- Formulário de pedido de separação -->
+                <div class="step-content questions hide">
+                    <div class="step-header">
+                        <h3 class="text-center">Formulario de Armazenagem</h3>
+                        <p></p>
+                    </div>
+
+                    <div class="card pd-medium-v pd-large-h">
+                        <form action="{{ url('') }}" method="post" id="storage_form">
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <input type="text" id="descricao_localidade" name="descricao_localidade" class="form-control">
+                                                        <label class="form-label">Armazenagem de Origem</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <select class="selectpicker" width="100%" name="programa_saude" data-show-subtext="true" data-live-search="true">
+                                                    <option data-subtext="Rep California">Tom Foolery</option>
+                                                    <option data-subtext="Sen California">Bill Gordon</option>
+                                                    <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
+                                                    <option data-subtext="Rep Alabama">Mario Flores</option>
+                                                    <option data-subtext="Rep Alaska">Don Young</option>
+                                                    <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <input type="text" id="numero_pedido" name="numero_pedido" class="form-control">
+                                                        <label class="form-label">Número do pedido</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Dados de destinatário</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <select class="selectpicker" width="100%" data-show-subtext="true" data-live-search="true">
+                                                    <option data-subtext="Rep California">Tom Foolery</option>
+                                                    <option data-subtext="Sen California">Bill Gordon</option>
+                                                    <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
+                                                    <option data-subtext="Rep Alabama">Mario Flores</option>
+                                                    <option data-subtext="Rep Alaska">Don Young</option>
+                                                    <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <input type="text" id="cep" name="cep" class="form-control">
+                                                        <label class="form-label">CEP</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <input type="text" name="unidade_entidade_destino" id="unidade_entidade_destino" id="armazem" class="form-control">
+                                                        <label class="form-label">Logradouro</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <input type="text" id="numero" name="numero" class="form-control">
+                                                        <label class="form-label">Número</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <input type="text" id="complemento" name="complemento" class="form-control">
+                                                        <label class="form-label">Complemento</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <input type="text" id="bairro" name="bairro" class="form-control">
+                                                        <label class="form-label">Bairro</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <input type="text" id="cidade" name="cidade" class="form-control">
+                                                        <label class="form-label">Cidade</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-float">
+                                                    <div class="form-line">
+                                                        <input type="text" id="uf" name="uf" class="form-control">
+                                                        <label class="form-label">UF</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5>
+                                            Itens
+                                            <button type="button" class="btn btn-success right" id="add-item">Adicionar item +</button>
+                                        </h5>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 list-items">
+                                        <div class="item-list">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input type="text" id="program" class="form-control">
+                                                            <label class="form-label">SKU</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input type="text" id="program" class="form-control">
+                                                            <label class="form-label">Descrição</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input type="text" id="program" class="form-control">
+                                                            <label class="form-label">Qtd Autorizado</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input type="text" id="program" class="form-control">
+                                                            <label class="form-label">Qtd Entregue</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input type="text" id="program" class="form-control">
+                                                            <label class="form-label">Valor unitário</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input type="text" id="program" class="form-control">
+                                                            <label class="form-label">Valor total</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col actions">
+                                                    <button class="btn btn-default expand" type="button" data-toggle="tooltip" data-placement="bottom" title="Expandir"><i class="zmdi zmdi-plus"></i></button>
+                                                    <button class="btn btn-danger delete-item" type="button" data-toggle="tooltip" data-placement="bottom" title="Excluir"><i class="zmdi zmdi-delete"></i></button>
+                                                </div>
+                                            </div>
+
+                                            <div class="row details hide">
+                                                <div class="col-12"><p><small class="text-muted">FABRICANTES</small></p></div>
+                                                <div class="col-12">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input type="text" name="fabricante" id="fabricante" class="form-control">
+                                                            <label class="form-label">Fabricante</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12"><p><small class="text-muted">FORNECEDORES</small></p></div>
+                                                <div class="col-12">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <input type="text" name="fornecedores" id="fornecedores" class="form-control">
+                                                            <label class="form-label">Fornecedores</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="button" data-step-show="file" class="btn btn-orange pull-right prev-step">
+                                    <i class="material-icons">arrow_back</i>
+                                    Voltar
+                                </button>
+
+                                <button type="button" data-step-show="file-charge" class="btn btn-primary right next-step">
+                                    Próximo passo
+                                    <i class="material-icons">arrow_forwards</i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Arquivo de transporte -->
+                <div class="step-content d-medium-v pd-large-h file-charge hide">
+                    <!-- Header arquivo de Armazenagem -->
+                    <div class="step-header">
+                        <h3 class="text-center">Arquivo de Transporte</h3>
+                        <p class="text-center text-muted">Deseja anexar um arquivo para processamento de Informacoes?</p>
+                    </div>
+
+                    <div class="my-dropzone" name="mainFileUploader">
+                        <div class="fallback text-muted"></div>
+                    </div>
+
+                    <button type="button" data-step-show="questions" class="btn btn-default pull-left prev-step">
+                        <i class="material-icons">arrow_back</i>
+                        Voltar
+                    </button>
+
+                    <button type="button" data-step-show="questions-charge" class="btn btn-primary right next-step">
+                        Continuar
+                        <i class="material-icons">arrow_forwards</i>
+                    </button>
+                </div>
+
+                <!-- Formulario de transporte -->
+                <div class="step-content questions-charge hide">
+                    <div class="step-header">
+                        <h3 class="text-center">Formulário de transporte</h3>
+                    </div>
+
+                    <button type="button" class="btn btn-default pull-left prev-step">
+                        <i class="material-icons">arrow_back</i>
+                        Voltar
+                    </button>
+
+                    <button type="button" data-step-enable="end" class="btn btn-primary right toggle next-step">
+                        Continuar
+                        <i class="material-icons">arrow_forwards</i>
+                    </button>
+                </div>
+
+                <!-- Tudo pronto -->
+                <div class="step-content d-medium-v pd-large-h end hide">
+                    <div class="step-header">
+                        <h3 class="text-center">Tudo pronto!</h3>
+                        <p class="text-muted text-center">Formulario preenchido com sucesso.</p>
+                    </div>
+
+                    <button type="button" class="btn btn-default pull-left prev-step">
+                        <i class="material-icons">arrow_back</i>
+                        Voltar
+                    </button>
+
+                    <button type="button" class="btn btn-primary right">
+                        Continuar
+                        <i class="material-icons">arrow_forwards</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ url('assets/template/js/JForm.js') }}"></script>
+    <script type="text/javascript" src="{{ url('assets/template/js/dropzone.js') }}"></script>
+    <script type="text/javascript" src="{{ url('assets/template/plugins/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
+@endsection
+
