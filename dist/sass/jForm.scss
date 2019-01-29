@@ -19,14 +19,14 @@
   }
 }
 
-@media screen and (max-width: 900px) {
+@media only screen and (max-width: 900px) {
   .steps {
     transform: scale(.6);
   }
 }
 
 .steps {
-  display: table;
+  display: inline-flex;
   width: auto;
   margin: auto;
   text-align: center;
