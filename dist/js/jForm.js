@@ -66,8 +66,8 @@ function nextStep(reference = null) {
             $(current).removeClass('active').addClass('check-step');
             $(item).addClass('active');
 
-            $('.steps-body .step-content').hide(200);
-            $('.steps-body').find('.'+bodyStep).show(300);
+            $('.steps-body .step-content').hide(100);
+            $('.steps-body').find('.'+bodyStep).fadeIn(300);
         }
     }
 }
