@@ -1,17 +1,7 @@
 $(document).ready(function () {
-    $(".my-dropzone").dropzone({
-        url: "pdf-reader",
-        maxFiles: 1,
-        success: function(file, response) {
-            fill(response);
-        },
-        dictDefaultMessage: "Clique ou arraste o arquivo a ser anexado para este campo",
-        addRemoveLinks: true
-    });
-
-    $(document).on('click', '.steps a', function() {
-        thatStep(this);
-    });
+    // $(document).on('click', '.steps a', function() {
+    //     thatStep(this);
+    // });
     $(document).on('click', '.next-step', function() {
         enableDisable(this);
         nextStep();
@@ -69,7 +59,6 @@ function nextStep(reference = null) {
     var item        = reference ? $(reference).next() : $(current).next();
     var bodyStep    = $(item).attr('data-step');
 
-    console.log(item);
     if(item) {
         if($(item).hasClass('disable-step')) {
             nextStep(item);
@@ -96,7 +85,7 @@ function prevStep(reference = null) {
         prevStep(item);
     } else {
         $(current).removeClass('active check-step');
-        $(item).addClass('active');
+        $(item).addClass('active').removeClass('check-step');
 
         $('.steps-body .step-content').hide(200);
         $('.steps-body').find('.'+bodyStep).show(300);

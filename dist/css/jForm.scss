@@ -1,0 +1,130 @@
+@keyframes fadeOutLeft {
+  from {
+    margin: auto;
+  }
+  to {
+    margin-left: -100px;
+    opacity: 0;
+  }
+}
+
+
+@keyframes fadeInRight {
+  from {
+    margin: auto;
+  }
+  to {
+    margin-right: -100px;
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .steps {
+    transform: scale(.6);
+  }
+}
+
+.steps {
+  display: table;
+  width: auto;
+  margin: auto;
+  text-align: center;
+  transform: scale(.7);
+
+  & a:first-child {
+    margin-left: 0;
+  }
+
+  & a {
+    color: rgba(0, 0, 0, .3);
+    text-align: center;
+    width: 110px;
+    float: left;
+    position: relative;
+    margin-left: 0;
+    padding-top: 30px;
+    transition: .3s;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 25%;
+      top: 0;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #189fee;
+      transform: translateX(50%);
+      transition: .3s;
+    }
+
+    &.active::before {
+      content: '';
+      position: absolute;
+      left: 25%;
+      top: 0;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 5px solid #189fee;
+      background: white;
+      transform: translateX(50%);
+      z-index: 10;
+      transition: .3s;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 11px;
+      left: 21px;
+      width: 100%;
+      height: 2px;
+      background: #189fee;
+      transform: translate(30%);
+      transition: .3s;
+    }
+
+    &.check-step::before {
+      background: #0fbe98;
+      transition: .3s;
+    }
+
+    &.check-step::after {
+      background: #0fbe98;
+      transition: .3s;
+    }
+
+    &.disable-step::before, .steps &.disable-step::after {
+      background: rgb(178, 219, 243);
+      transition: .3s;
+    }
+
+    &:last-child:after {
+      content: '';
+      background: transparent;
+    }
+  }
+}
+
+
+
+//.lips-list {
+//  list-style-image: url("../img/lips.png") !important;
+//}
+
+.nav-pills {
+  & > li > a {
+    font-size: 12px;
+    text-transform: none;
+  }
+
+  & > li.active > a, & > li.active > a:focus, & > li.active > a:hover {
+    background-color: #f75169;
+    color: #FFFFFF;
+    border-radius: 50em;
+    box-shadow: none;
+  }
+}
+
