@@ -71,7 +71,7 @@ function nextStep(reference = null) {
             $(item).addClass('active');
 
             $('.steps-body .step-content.active').removeClass('active').hide(100);
-            $('.steps-body .step-content.'+bodyStep).fadeIn(300);
+            $('.steps-body .step-content.'+bodyStep).addClass('active').fadeIn(300);
         }
     }
 }
