@@ -45,8 +45,12 @@ function thatStep(item) {
     if(!$(item).hasClass('disable-step')) {
         $('.steps-body .step-content').hide(200);
         $('.'+step).show(300);
-        $('.steps').find('.active').removeClass('active');
-        $(item).addClass('active');
+        var exists = $('.steps').find('.'+step);
+
+        if(exists) {
+            $('.steps').find('.active').removeClass('active');
+            $(step).addClass('active');
+        }
     }
 }
 
