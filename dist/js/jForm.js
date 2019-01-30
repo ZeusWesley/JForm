@@ -43,7 +43,7 @@ function thatStep(item) {
     var step = $(item).attr('data-step');
 
     if(!$(item).hasClass('disable-step')) {
-        $('.steps-body .step-content').find('active').removeClass('active').hide(200);
+        $('.steps-body .step-content').find('active').removeClass('.active').hide(200);
         $('.'+step).addClass('active').show(300);
         var exists = $('.steps').find('.'+step);
 
@@ -70,7 +70,7 @@ function nextStep(reference = null) {
             $(current).removeClass('active').addClass('check-step');
             $(item).addClass('active');
 
-            $('.steps-body .step-content').find('active').removeClass('active').hide(100);
+            $('.steps-body .step-content').find('.active').removeClass('active').hide(100);
             $('.steps-body').find('.'+bodyStep).fadeIn(300);
         }
     }
@@ -91,7 +91,7 @@ function prevStep(reference = null) {
         $(current).removeClass('active check-step');
         $(item).addClass('active').removeClass('check-step');
 
-        $('.steps-body .step-content').find('active').removeClass('active').hide(200);
+        $('.steps-body .step-content').find('.active').removeClass('active').hide(200);
         $('.steps-body').find('.'+bodyStep).addClass('active').show(300);
     }
 }
