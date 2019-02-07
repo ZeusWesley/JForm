@@ -1,7 +1,8 @@
 $(document).ready(function () {
-    // $(document).on('click', '.steps a', function() {
-    //     thatStep(this);
-    // });
+    $(document).on('click', '.step-guide', function () {
+        thatStep(this);
+    });
+
     $(document).on('click', '.next-step', function() {
         enableDisable(this);
         nextStep();
@@ -45,7 +46,7 @@ function thatStep(item) {
     if(!$(item).hasClass('disable-step')) {
         $('.steps-body .step-content.active').removeClass('.active').hide(200);
         $('.'+step).addClass('active').show(300);
-        var exists = $('.steps').find('.'+step);
+        var exists = $('.steps').find('.'+step).attr('data-step');
 
         if(exists) {
             $('.steps').find('.active').removeClass('active');
